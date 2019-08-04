@@ -1,15 +1,19 @@
 p6df::modules::node::version() { echo "0.0.1" }
-p6df::modules::node::deps()    { ModuleDeps=(nodenv/nodenv) }
+p6df::modules::node::deps()    { ModuleDeps=(nodenv/nodenv nodenv/node-build)  }
 
 #p6df::modules::node::external::brew() { }
-#p6df::modules::node::home::symlink() { }
+
+p6df::modules::node::home::symlink() { 
+
+  mkdir -p $P6_DFZ_SRC_DIR/nodenv/nodenv/plugins
+  ln -fs $P6_DFZ_SRC_DIR/nodenv/node-build $P6_DFZ_SRC_DIR/nodenv/nodenv/plugins/node-build
+}
 
 p6df::modules::node::langs() {
 
   nodenv install 12.7.0
-  nodenv global 3.7.3
+  nodenv global 12.7.0
   nodenv rehash
-  npm install -g aws-cdk
 }
 
 p6df::modules::node::init() {
