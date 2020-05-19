@@ -11,8 +11,8 @@ p6df::modules::node::home::symlink() {
 
 p6df::modules::node::langs() {
 
-  nodenv install 13.11.0
-  nodenv global 13.11.0
+  nodenv install 14.2.0
+  nodenv global 14.2.0
   nodenv rehash
 }
 
