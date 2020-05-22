@@ -17,8 +17,18 @@ p6df::modules::node::home::symlink() {
 
 p6df::modules::node::langs() {
 
-  nodenv install 14.2.0
-  nodenv global 14.2.0
+  # update both
+  (cd $P6_DFZ_SRC_DIR/nodenv/node-build ; git pull)
+  (cd $P6_DFZ_SRC_DIR/nodenv/nodenv ; git pull)
+
+  # nuke the old one
+  local previous=$(nodenv install -l | grep ^1 | tail -2 | head -1)
+  nodenv uninstall -f $previous
+
+  # get the shiny one
+  local latest=$(nodenv install -l | grep ^1 | tail -1)
+  nodenv install $latest
+  nodenv global $latest
   nodenv rehash
 }
 
