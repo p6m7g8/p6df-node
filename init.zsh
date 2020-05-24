@@ -27,7 +27,7 @@ p6df::modules::node::langs() {
 
   # get the shiny one
   local latest=$(nodenv install -l | grep ^1 | tail -1)
-  nodenv install $latest
+  nodenv install -s $latest
   nodenv global $latest
   nodenv rehash
 }
