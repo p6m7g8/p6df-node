@@ -55,5 +55,10 @@ p6df::modules::node::nodenv::init() {
 
 p6df::prompt::node::line() {
 
+  p6_node_prompt_info
+}
+
+p6_node_prompt_info() {
+
   p6_lang_version "node"
 }
