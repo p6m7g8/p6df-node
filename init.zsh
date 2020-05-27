@@ -3,7 +3,6 @@ p6df::modules::node::deps()    { ModuleDeps=(
       nodenv/nodenv 
       nodenv/node-build
       robbyrussell/oh-my-zsh:plugins/npm
-      robbyrussell/oh-my-zsh:plugins/npx
     )  
 }
 
