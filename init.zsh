@@ -1,4 +1,18 @@
+######################################################################
+#<
+#
+# Function: p6df::modules::node::version()
+#
+#>
+######################################################################
 p6df::modules::node::version() { echo "0.0.1" }
+######################################################################
+#<
+#
+# Function: p6df::modules::node::deps()
+#
+#>
+######################################################################
 p6df::modules::node::deps()    { ModuleDeps=(
       nodenv/nodenv 
       nodenv/node-build
@@ -9,12 +23,26 @@ p6df::modules::node::deps()    { ModuleDeps=(
 
 #p6df::modules::node::external::brew() { }
 
+######################################################################
+#<
+#
+# Function: p6df::modules::node::home::symlink()
+#
+#>
+######################################################################
 p6df::modules::node::home::symlink() { 
 
   mkdir -p $P6_DFZ_SRC_DIR/nodenv/nodenv/plugins
   ln -fs $P6_DFZ_SRC_DIR/nodenv/node-build $P6_DFZ_SRC_DIR/nodenv/nodenv/plugins/node-build
 }
 
+######################################################################
+#<
+#
+# Function: p6df::modules::node::langs()
+#
+#>
+######################################################################
 p6df::modules::node::langs() {
 
   # update both
@@ -32,11 +60,28 @@ p6df::modules::node::langs() {
   nodenv rehash
 }
 
+######################################################################
+#<
+#
+# Function: p6df::modules::node::init()
+#
+#>
+######################################################################
 p6df::modules::node::init() {
 
   p6df::modules::node::nodenv::init "$P6_DFZ_SRC_DIR"
 }
 
+######################################################################
+#<
+#
+# Function: p6df::modules::node::nodenv::init(dir)
+#
+#  Args:
+#	dir - 
+#
+#>
+######################################################################
 p6df::modules::node::nodenv::init() {
   local dir="$1"
 
@@ -53,11 +98,25 @@ p6df::modules::node::nodenv::init() {
   fi
 }
 
+######################################################################
+#<
+#
+# Function: p6df::prompt::node::line()
+#
+#>
+######################################################################
 p6df::prompt::node::line() {
 
   p6_node_prompt_info
 }
 
+######################################################################
+#<
+#
+# Function: p6_node_prompt_info()
+#
+#>
+######################################################################
 p6_node_prompt_info() {
 
   p6_lang_version "node"
