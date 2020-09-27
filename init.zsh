@@ -16,8 +16,8 @@ p6df::modules::node::version() { echo "0.0.1" }
 p6df::modules::node::deps()    { ModuleDeps=(
       nodenv/nodenv 
       nodenv/node-build
-      robbyrussell/oh-my-zsh:plugins/npm
-      robbyrussell/oh-my-zsh:plugins/yarn
+      ohmyzsh/ohmyzsh:plugins/npm
+      ohmyzsh/ohmyzsh:plugins/yarn
     )  
 }
 
