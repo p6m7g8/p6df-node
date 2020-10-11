@@ -6,6 +6,7 @@
 #>
 ######################################################################
 p6df::modules::node::version() { echo "0.0.1" }
+
 ######################################################################
 #<
 #
@@ -13,12 +14,14 @@ p6df::modules::node::version() { echo "0.0.1" }
 #
 #>
 ######################################################################
-p6df::modules::node::deps()    { ModuleDeps=(
-      nodenv/nodenv 
+p6df::modules::node::deps() {
+  ModuleDeps=(
+      p6m7g8/p6common
+      nodenv/nodenv
       nodenv/node-build
       ohmyzsh/ohmyzsh:plugins/npm
       ohmyzsh/ohmyzsh:plugins/yarn
-    )  
+  )
 }
 
 #p6df::modules::node::external::brew() { }
@@ -101,12 +104,13 @@ p6df::modules::node::nodenv::init() {
 ######################################################################
 #<
 #
-# Function: p6df::prompt::node::line()
+# Function: p6df::modules::node::prompt::line()
 #
 #>
 ######################################################################
-p6df::prompt::node::line() {
+p6df::modules::node::prompt::line() {
 
+  echo -n "node:\t  "
   p6_node_prompt_info
 }
 
