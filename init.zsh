@@ -53,6 +53,9 @@ p6df::modules::node::langs() {
   nodenv install -s $latest
   nodenv global $latest
   nodenv rehash
+
+  npm install -g yarn
+  nodenv rehash
 }
 
 ######################################################################
