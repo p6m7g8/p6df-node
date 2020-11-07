@@ -67,6 +67,8 @@ p6df::modules::node::langs() {
 ######################################################################
 p6df::modules::node::init() {
 
+  alias yd='yarn deploy'
+  alias yD='yarn destroy'
   p6df::modules::node::nodenv::init "$P6_DFZ_SRC_DIR"
 }
 
@@ -105,7 +107,6 @@ p6df::modules::node::nodenv::init() {
 ######################################################################
 p6df::modules::node::prompt::line() {
 
-  echo -n "node:\t  "
   p6_node_prompt_info
 }
 
@@ -116,7 +117,16 @@ p6df::modules::node::prompt::line() {
 #
 #>
 ######################################################################
+declare -g _p6_node_cache_prompt_version
 p6_node_prompt_info() {
 
-  p6_lang_version "node"
+  if p6_string_blank "$_p6_node_cache_prompt_version"; then
+    _p6_node_cache_prompt_version=$(p6_lang_version "node")
+  fi
+  echo "node:\t  ${_p6_node_cache_prompt_version}"
+}
+
+p6_node_prompt_reset() {
+
+  _p6_node_cache_prompt_version=""
 }
