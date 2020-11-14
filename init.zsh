@@ -78,7 +78,7 @@ p6df::modules::node::init() {
 # Function: p6df::modules::node::nodenv::init(dir)
 #
 #  Args:
-#	dir - 
+#	dir -
 #
 #>
 ######################################################################
@@ -110,6 +110,7 @@ p6df::modules::node::prompt::line() {
   p6_node_prompt_info
 }
 
+declare -g _p6_node_cache_prompt_version
 ######################################################################
 #<
 #
@@ -117,7 +118,6 @@ p6df::modules::node::prompt::line() {
 #
 #>
 ######################################################################
-declare -g _p6_node_cache_prompt_version
 p6_node_prompt_info() {
 
   if p6_string_blank "$_p6_node_cache_prompt_version"; then
@@ -126,6 +126,13 @@ p6_node_prompt_info() {
   echo "node:\t  ${_p6_node_cache_prompt_version}"
 }
 
+######################################################################
+#<
+#
+# Function: p6_node_prompt_reset()
+#
+#>
+######################################################################
 p6_node_prompt_reset() {
 
   _p6_node_cache_prompt_version=""
