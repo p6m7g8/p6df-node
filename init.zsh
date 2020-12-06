@@ -1,4 +1,3 @@
-
 ######################################################################
 #<
 #
@@ -8,11 +7,11 @@
 ######################################################################
 p6df::modules::node::deps() {
   ModuleDeps=(
-      p6m7g8/p6common
-      nodenv/nodenv
-      nodenv/node-build
-      ohmyzsh/ohmyzsh:plugins/npm
-      ohmyzsh/ohmyzsh:plugins/yarn
+    p6m7g8/p6common
+    nodenv/nodenv
+    nodenv/node-build
+    ohmyzsh/ohmyzsh:plugins/npm
+    ohmyzsh/ohmyzsh:plugins/yarn
   )
 }
 
@@ -25,7 +24,7 @@ p6df::modules::node::deps() {
 #
 #>
 ######################################################################
-p6df::modules::node::home::symlink() { 
+p6df::modules::node::home::symlink() {
 
   mkdir -p $P6_DFZ_SRC_DIR/nodenv/nodenv/plugins
   ln -fs $P6_DFZ_SRC_DIR/nodenv/node-build $P6_DFZ_SRC_DIR/nodenv/nodenv/plugins/node-build
@@ -41,8 +40,14 @@ p6df::modules::node::home::symlink() {
 p6df::modules::node::langs() {
 
   # update both
-  (cd $P6_DFZ_SRC_DIR/nodenv/node-build ; git pull)
-  (cd $P6_DFZ_SRC_DIR/nodenv/nodenv ; git pull)
+  (
+    cd $P6_DFZ_SRC_DIR/nodenv/node-build
+    git pull
+  )
+  (
+    cd $P6_DFZ_SRC_DIR/nodenv/nodenv
+    git pull
+  )
 
   # nuke the old one
   local previous=$(nodenv install -l | grep ^1 | tail -2 | head -1)
@@ -96,6 +101,18 @@ p6df::modules::node::nodenv::init() {
     p6df::util::path_if $NODENV_ROOT/bin
     eval "$(nodenv init - zsh)"
   fi
+}
+
+######################################################################
+#<
+#
+# Function: p6df::modules::node::nodenv::prompt::line()
+#
+#>
+######################################################################
+p6df::modules::node::nodenv::prompt::line() {
+
+  p6_echo "nodenv:\t  nodenv_root=$NODENV_ROOT"
 }
 
 ######################################################################
