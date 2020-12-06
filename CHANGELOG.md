@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.1.0](https://github.com/p6m7g8/p6df-node/compare/v2.0.0...v2.1.0) (2020-12-06)
+
+
+### Features
+
+* **alias:** adds `yd`, `yD` ([#11](https://github.com/p6m7g8/p6df-node/issues/11)) ([a91cd10](https://github.com/p6m7g8/p6df-node/commit/a91cd10947123681159a62f75212228d78ceac07))
+* **api:** +`p6df::modules::node::nodenv::prompt::line` ([#20](https://github.com/p6m7g8/p6df-node/issues/20)) ([443cea9](https://github.com/p6m7g8/p6df-node/commit/443cea9d5dcbbddcc863f516fbcee64422a5b617))
+* **api:** centralize ::version() ([98cb83e](https://github.com/p6m7g8/p6df-node/commit/98cb83e2741d36eed2108161e70d050cf6b8a320))
+* **community:** adds CODE_OF_CONDUCT ([e046a42](https://github.com/p6m7g8/p6df-node/commit/e046a428287a093c9556edfa113e4c42c4e57eaa))
+* **github:** adds ISSUE_TEMPLATEs ([16445ac](https://github.com/p6m7g8/p6df-node/commit/16445acac8d17a80d953cf3ce81cf2bca8a62550))
+* **langs:** depend on yarn globally ([#10](https://github.com/p6m7g8/p6df-node/issues/10)) ([76d6820](https://github.com/p6m7g8/p6df-node/commit/76d6820256389c3c0b1695b7ef114275413fbbe4))
+
+
+* **community:** rely on the .github/ in the org ([#18](https://github.com/p6m7g8/p6df-node/issues/18)) ([55db717](https://github.com/p6m7g8/p6df-node/commit/55db717af07013842d0578cb6df360e8767b5a08))
+* **docs:** fixes whitespace ([daabc06](https://github.com/p6m7g8/p6df-node/commit/daabc0633ecb8e8371c8cef81b38c8a87d483efc))
+* **README:** fixes module expansion, adds CodeCov and Synk badges ([#19](https://github.com/p6m7g8/p6df-node/issues/19)) ([2c437a2](https://github.com/p6m7g8/p6df-node/commit/2c437a23a95d5813e2da7352131bdb053341c40f))
+* **README:** updates to template v2.0 ([e2dc047](https://github.com/p6m7g8/p6df-node/commit/e2dc047b8e7211a7813e4aca04aa3d0fbc0b3c4d))
+* **semantic:** no longer needed, defaults are fine ([fd4526c](https://github.com/p6m7g8/p6df-node/commit/fd4526cde78d196e394dfc71c1e89efd76975f34))
+
 ## [2.0.0](https://github.com/p6m7g8/p6df-node/compare/v1.0.1...v2.0.0) (2020-10-11)
 
 
