@@ -49,18 +49,20 @@ p6df::modules::node::langs() {
     git pull
   )
 
-  # nuke the old one
-  local previous=$(nodenv install -l | grep ^1 | tail -2 | head -1)
-  nodenv uninstall -f $previous
+  local ver_major
+  for ver_major in 12 13 14 15; do
+    # nuke the old one
+    local previous=$(nodenv install -l | grep ^$ver_major | tail -2 | head -1)
+    nodenv uninstall -f $previous
 
-  # get the shiny one
-  local latest=$(nodenv install -l | grep ^1 | tail -1)
-  nodenv install -s $latest
-  nodenv global $latest
-  nodenv rehash
-
-  npm install -g yarn
-  nodenv rehash
+    # get the shiny one
+    local latest=$(nodenv install -l | grep ^$ver_major | tail -1)
+    nodenv install -s $latest
+    nodenv global $latest
+    nodenv rehash
+    npm install -g yarn
+    nodenv rehash
+  done
 }
 
 ######################################################################
