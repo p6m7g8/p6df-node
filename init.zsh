@@ -50,7 +50,7 @@ p6df::modules::node::langs() {
   )
 
   local ver_major
-  for ver_major in 12 13 14 15; do
+  for ver_major in 10 11 12 13 14 15; do
     # nuke the old one
     local previous=$(nodenv install -l | grep ^$ver_major | tail -2 | head -1)
     nodenv uninstall -f $previous
@@ -68,14 +68,47 @@ p6df::modules::node::langs() {
 ######################################################################
 #<
 #
+# Function: p6df::modules::node::aliases::lerna()
+#
+#>
+######################################################################
+p6df::modules::node::aliases::lerna() {
+
+  # runs an npm script via lerna for a the current module
+  alias lr='lerna run --stream --scope $(node -p "require(\"./package.json\").name")'
+
+  # runs "npm run build" (build + test) for the current module
+  alias lb='lr build'
+  alias lt='lr test'
+
+  # runs "npm run watch" for the current module (recommended to run in a separate terminal session)
+  alias lw='lr watch'
+}
+
+######################################################################
+#<
+#
+# Function: p6df::modules::node::aliases::yarn()
+#
+#>
+######################################################################
+p6df::modules::node::aliases::yarn() {
+
+  alias yd='yarn deploy'
+  alias yD='yarn destroy'
+}
+
+######################################################################
+#<
+#
 # Function: p6df::modules::node::init()
 #
 #>
 ######################################################################
 p6df::modules::node::init() {
-
-  alias yd='yarn deploy'
-  alias yD='yarn destroy'
+  
+  p6df::modules::node::aliases::lerna
+  p6df::modules::node::aliases::yarn
   p6df::modules::node::nodenv::init "$P6_DFZ_SRC_DIR"
 }
 
