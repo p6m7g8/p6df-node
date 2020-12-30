@@ -44,6 +44,8 @@
 
 - p6_node_prompt_info()
 - p6_node_prompt_reset()
+- p6df::modules::node::aliases::lerna()
+- p6df::modules::node::aliases::yarn()
 - p6df::modules::node::deps()
 - p6df::modules::node::home::symlink()
 - p6df::modules::node::init()
