@@ -49,18 +49,53 @@ p6df::modules::node::langs() {
     git pull
   )
 
-  # nuke the old one
-  local previous=$(nodenv install -l | grep ^1 | tail -2 | head -1)
-  nodenv uninstall -f $previous
+  local ver_major
+  for ver_major in 10 11 12 13 14 15; do
+    # nuke the old one
+    local previous=$(nodenv install -l | grep ^$ver_major | tail -2 | head -1)
+    nodenv uninstall -f $previous
 
-  # get the shiny one
-  local latest=$(nodenv install -l | grep ^1 | tail -1)
-  nodenv install -s $latest
-  nodenv global $latest
-  nodenv rehash
+    # get the shiny one
+    local latest=$(nodenv install -l | grep ^$ver_major | tail -1)
+    nodenv install -s $latest
+    nodenv global $latest
+    nodenv rehash
+    npm install -g yarn
+    nodenv rehash
+  done
+}
 
-  npm install -g yarn lerna
-  nodenv rehash
+######################################################################
+#<
+#
+# Function: p6df::modules::node::aliases::lerna()
+#
+#>
+######################################################################
+p6df::modules::node::aliases::lerna() {
+
+  # runs an npm script via lerna for a the current module
+  alias lr='lerna run --stream --scope $(node -p "require(\"./package.json\").name")'
+
+  # runs "npm run build" (build + test) for the current module
+  alias lb='lr build'
+  alias lt='lr test'
+
+  # runs "npm run watch" for the current module (recommended to run in a separate terminal session)
+  alias lw='lr watch'
+}
+
+######################################################################
+#<
+#
+# Function: p6df::modules::node::aliases::yarn()
+#
+#>
+######################################################################
+p6df::modules::node::aliases::yarn() {
+
+  alias yd='yarn deploy'
+  alias yD='yarn destroy'
 }
 
 ######################################################################
@@ -71,9 +106,9 @@ p6df::modules::node::langs() {
 #>
 ######################################################################
 p6df::modules::node::init() {
-
-  alias yd='yarn deploy'
-  alias yD='yarn destroy'
+  
+  p6df::modules::node::aliases::lerna
+  p6df::modules::node::aliases::yarn
   p6df::modules::node::nodenv::init "$P6_DFZ_SRC_DIR"
 }
 

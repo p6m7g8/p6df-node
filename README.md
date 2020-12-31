@@ -21,6 +21,8 @@
 [![Mergify](https://img.shields.io/endpoint.svg?url=https://gh.mergify.io/badges/p6m7g8/p6df-node/&style=flat)](https://mergify.io)
 [![codecov](https://codecov.io/gh/p6m7g8/p6df-node/branch/master/graph/badge.svg?token=14Yj1fZbew)](https://codecov.io/gh/p6m7g8/p6df-node)
 [![Known Vulnerabilities](https://snyk.io/test/github/p6m7g8/p6df-node/badge.svg?targetFile=package.json)](https://snyk.io/test/github/p6m7g8/p6df-node?targetFile=package.json)
+[![Gihub repo dependents](https://badgen.net/github/dependents-repo/p6m7g8/p6df-node)](https://github.com/p6m7g8/p6df-node/network/dependents?dependent_type=REPOSITORY)
+[![Gihub package dependents](https://badgen.net/github/dependents-pkg/p6m7g8/p6df-node)](https://github.com/p6m7g8/p6df-node/network/dependents?dependent_type=PACKAGE)
 
 ## Summary
 
@@ -30,7 +32,7 @@
 
 ## Code of Conduct
 
-- [Code of Conduct](CODE_OF_CONDUCT.md)
+- [Code of Conduct](https://github.com/p6m7g8/.github/blob/master/CODE_OF_CONDUCT.md)
 
 ## Changes
 
@@ -42,6 +44,8 @@
 
 - p6_node_prompt_info()
 - p6_node_prompt_reset()
+- p6df::modules::node::aliases::lerna()
+- p6df::modules::node::aliases::yarn()
 - p6df::modules::node::deps()
 - p6df::modules::node::home::symlink()
 - p6df::modules::node::init()
