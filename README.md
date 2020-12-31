@@ -44,6 +44,8 @@
 
 - p6_node_prompt_info()
 - p6_node_prompt_reset()
+- p6_node_yarn_submit()
+- p6_node_yarn_upgrade()
 - p6df::modules::node::aliases::lerna()
 - p6df::modules::node::aliases::yarn()
 - p6df::modules::node::deps()
@@ -53,6 +55,8 @@
 - p6df::modules::node::nodenv::init(dir)
 - p6df::modules::node::nodenv::prompt::line()
 - p6df::modules::node::prompt::line()
+- true  = p6_node_npm_is()
+- true  = p6_node_yarn_is()
 
 
 ## Author

@@ -42,11 +42,11 @@ p6df::modules::node::langs() {
   # update both
   (
     cd $P6_DFZ_SRC_DIR/nodenv/node-build
-    git pull
+    p6_git_p6_pull
   )
   (
     cd $P6_DFZ_SRC_DIR/nodenv/nodenv
-    git pull
+    p6_git_p6_pull
   )
 
   local ver_major
@@ -57,10 +57,12 @@ p6df::modules::node::langs() {
 
     # get the shiny one
     local latest=$(nodenv install -l | grep ^$ver_major | tail -1)
+
     nodenv install -s $latest
     nodenv global $latest
     nodenv rehash
-    npm install -g yarn
+
+    npm install -g yarn lerna
     nodenv rehash
   done
 }
@@ -106,7 +108,7 @@ p6df::modules::node::aliases::yarn() {
 #>
 ######################################################################
 p6df::modules::node::init() {
-  
+
   p6df::modules::node::aliases::lerna
   p6df::modules::node::aliases::yarn
   p6df::modules::node::nodenv::init "$P6_DFZ_SRC_DIR"
@@ -175,7 +177,7 @@ p6_node_prompt_info() {
   if p6_string_blank "$_p6_node_cache_prompt_version"; then
     _p6_node_cache_prompt_version=$(p6_lang_version "node")
   fi
-  echo "node:\t  ${_p6_node_cache_prompt_version}"
+  p6_echo "node:\t  ${_p6_node_cache_prompt_version}"
 }
 
 ######################################################################
@@ -188,4 +190,69 @@ p6_node_prompt_info() {
 p6_node_prompt_reset() {
 
   _p6_node_cache_prompt_version=""
+}
+
+######################################################################
+#<
+#
+# Function: true  = p6_node_yarn_is()
+#
+#  Returns:
+#	true - 
+#	false - 
+#
+#>
+######################################################################
+p6_node_yarn_is() {
+
+  if p6_file_exists "yarn.lock"; then
+    p6_return_true
+  else
+    p6_return_false
+  fi
+}
+
+######################################################################
+#<
+#
+# Function: true  = p6_node_npm_is()
+#
+#  Returns:
+#	true - 
+#	false - 
+#
+#>
+######################################################################
+p6_node_npm_is() {
+
+  if p6_file_exists "pack-lock.json"; then
+    p6_return_true
+  else
+    p6_return_false
+  fi
+}
+
+######################################################################
+#<
+#
+# Function: p6_node_yarn_upgrade()
+#
+#>
+######################################################################
+p6_node_yarn_upgrade() {
+
+  yarn upgrade
+}
+
+######################################################################
+#<
+#
+# Function: p6_node_yarn_submit()
+#
+#>
+######################################################################
+p6_node_yarn_submit() {
+
+  p6_git_p6_add_all
+  p6_github_gh_pr_submit "chore(deps): yarn upgrade"
 }
