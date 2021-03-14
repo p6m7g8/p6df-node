@@ -38,9 +38,11 @@
 
 - [Change Log](CHANGELOG.md)
 
-### Usage
+## Usage
 
-#### init.zsh:
+### p6df-node:
+
+#### p6df-node/init.zsh:
 
 - p6_node_prompt_info()
 - p6_node_prompt_reset()
