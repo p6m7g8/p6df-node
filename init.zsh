@@ -26,8 +26,10 @@ p6df::modules::node::deps() {
 ######################################################################
 p6df::modules::node::home::symlink() {
 
-  mkdir -p $P6_DFZ_SRC_DIR/nodenv/nodenv/plugins
-  ln -fs $P6_DFZ_SRC_DIR/nodenv/node-build $P6_DFZ_SRC_DIR/nodenv/nodenv/plugins/node-build
+  echo mkdir -p $P6_DFZ_SRC_DIR/nodenv/nodenv/plugins
+  echo ln -fs $P6_DFZ_SRC_DIR/nodenv/node-build $P6_DFZ_SRC_DIR/nodenv/nodenv/plugins/node-build
+#  mkdir -p $P6_DFZ_SRC_DIR/nodenv/nodenv/plugins
+#  ln -fs $P6_DFZ_SRC_DIR/nodenv/node-build $P6_DFZ_SRC_DIR/nodenv/nodenv/plugins/node-build
 }
 
 ######################################################################
