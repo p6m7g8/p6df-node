@@ -15,13 +15,26 @@ p6df::modules::node::deps() {
   )
 }
 
-#p6df::modules::node::external::brew() { }
+######################################################################
+#<
+#
+# Function: p6df::modules::node::vscodes()
+#
+#>
+######################################################################
+p6df::modules::node::vscodes() {
+
+  # js/ts/node/webpack
+  code --install-extension dbaeumer.vscode-eslint
+  code --install-extension GregorBiswanger.json2ts
+}
 
 ######################################################################
 #<
 #
 # Function: p6df::modules::node::home::symlink()
 #
+#  Environment:	 P6_DFZ_SRC_DIR
 #>
 ######################################################################
 p6df::modules::node::home::symlink() {
@@ -35,6 +48,8 @@ p6df::modules::node::home::symlink() {
 #
 # Function: p6df::modules::node::langs()
 #
+#  Depends:	 p6_git
+#  Environment:	 P6_DFZ_SRC_DIR
 #>
 ######################################################################
 p6df::modules::node::langs() {
@@ -105,6 +120,7 @@ p6df::modules::node::aliases::yarn() {
 #
 # Function: p6df::modules::node::init()
 #
+#  Environment:	 P6_DFZ_SRC_DIR
 #>
 ######################################################################
 p6df::modules::node::init() {
@@ -122,6 +138,7 @@ p6df::modules::node::init() {
 #  Args:
 #	dir -
 #
+#  Environment:	 DISABLE_ENVS HAS_NODENV NODENV_ROOT
 #>
 ######################################################################
 p6df::modules::node::nodenv::init() {
@@ -145,6 +162,8 @@ p6df::modules::node::nodenv::init() {
 #
 # Function: p6df::modules::node::nodenv::prompt::line()
 #
+#  Depends:	 p6_echo
+#  Environment:	 NODENV_ROOT
 #>
 ######################################################################
 p6df::modules::node::nodenv::prompt::line() {
@@ -170,6 +189,7 @@ declare -g _p6_node_cache_prompt_version
 #
 # Function: p6_node_prompt_info()
 #
+#  Depends:	 p6_echo p6_string
 #>
 ######################################################################
 p6_node_prompt_info() {
@@ -201,6 +221,7 @@ p6_node_prompt_reset() {
 #	true - 
 #	false - 
 #
+#  Depends:	 p6_file
 #>
 ######################################################################
 p6_node_yarn_is() {
@@ -221,6 +242,7 @@ p6_node_yarn_is() {
 #	true - 
 #	false - 
 #
+#  Depends:	 p6_file
 #>
 ######################################################################
 p6_node_npm_is() {
@@ -249,6 +271,7 @@ p6_node_yarn_upgrade() {
 #
 # Function: p6_node_yarn_submit()
 #
+#  Depends:	 p6_git p6_github
 #>
 ######################################################################
 p6_node_yarn_submit() {

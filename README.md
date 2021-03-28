@@ -57,8 +57,10 @@
 - p6df::modules::node::nodenv::init(dir)
 - p6df::modules::node::nodenv::prompt::line()
 - p6df::modules::node::prompt::line()
+- p6df::modules::node::vscodes()
 - true  = p6_node_npm_is()
 - true  = p6_node_yarn_is()
+
 
 
 ## Author
