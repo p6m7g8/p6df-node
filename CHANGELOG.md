@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.1.1](https://github.com/p6m7g8/p6df-node/compare/v2.1.0...v2.1.1) (2021-04-04)
+
+
+### Features
+
+* **langs:** install `lerna` globally, the aliases assume this ([#21](https://github.com/p6m7g8/p6df-node/issues/21)) ([28c5906](https://github.com/p6m7g8/p6df-node/commit/28c59063826902e08c507de1ba945eeacd80a318))
+* more node versions, move some lerna aliases here ([#23](https://github.com/p6m7g8/p6df-node/issues/23)) ([11976c8](https://github.com/p6m7g8/p6df-node/commit/11976c801d70d45b041cd48fbf5be96cbde18914))
+* **langs:** install 12-15 major versions of node to match lambda and cdk ([#22](https://github.com/p6m7g8/p6df-node/issues/22)) ([0ae2385](https://github.com/p6m7g8/p6df-node/commit/0ae23856338c00163dd71f4cc16848072c2ccbcf))
+
+
+* **README:** updates generator ([#24](https://github.com/p6m7g8/p6df-node/issues/24)) ([764a43f](https://github.com/p6m7g8/p6df-node/commit/764a43fe7a39f6a057ba74b61a794370fd225814))
+* **vscode:** splits vscode extensions to their languages ([#25](https://github.com/p6m7g8/p6df-node/issues/25)) ([fd5e67a](https://github.com/p6m7g8/p6df-node/commit/fd5e67ae28b3fdeb3ea34af9727561ecca62e095))
+* Coc -> .github ([f147044](https://github.com/p6m7g8/p6df-node/commit/f147044dc106778a3c3419b9718b73703bcdc9f6))
+
 ## [2.1.0](https://github.com/p6m7g8/p6df-node/compare/v2.0.0...v2.1.0) (2020-12-06)
 
 
