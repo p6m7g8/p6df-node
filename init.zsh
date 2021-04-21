@@ -1,11 +1,11 @@
 ######################################################################
 #<
 #
-# Function: p6df::modules::node::deps()
+# Function: p6df::modules::js::deps()
 #
 #>
 ######################################################################
-p6df::modules::node::deps() {
+p6df::modules::js::deps() {
   ModuleDeps=(
     p6m7g8/p6common
     nodenv/nodenv
@@ -18,13 +18,13 @@ p6df::modules::node::deps() {
 ######################################################################
 #<
 #
-# Function: p6df::modules::node::vscodes()
+# Function: p6df::modules::js::vscodes()
 #
 #>
 ######################################################################
-p6df::modules::node::vscodes() {
+p6df::modules::js::vscodes() {
 
-  # js/ts/node/webpack
+  # webasm/ts/js/deno/node/html/css
   code --install-extension dbaeumer.vscode-eslint
   code --install-extension GregorBiswanger.json2ts
 }
@@ -32,12 +32,13 @@ p6df::modules::node::vscodes() {
 ######################################################################
 #<
 #
-# Function: p6df::modules::node::home::symlink()
+# Function: p6df::modules::js::home::symlink()
 #
+#  Depends:	 p6_git
 #  Environment:	 P6_DFZ_SRC_DIR
 #>
 ######################################################################
-p6df::modules::node::home::symlink() {
+p6df::modules::js::home::symlink() {
 
   mkdir -p $P6_DFZ_SRC_DIR/nodenv/nodenv/plugins
   ln -fs $P6_DFZ_SRC_DIR/nodenv/node-build $P6_DFZ_SRC_DIR/nodenv/nodenv/plugins/node-build
@@ -46,13 +47,13 @@ p6df::modules::node::home::symlink() {
 ######################################################################
 #<
 #
-# Function: p6df::modules::node::langs()
+# Function: p6df::modules::js::langs()
 #
 #  Depends:	 p6_git
 #  Environment:	 P6_DFZ_SRC_DIR
 #>
 ######################################################################
-p6df::modules::node::langs() {
+p6df::modules::js::langs() {
 
   # update both
   (
@@ -85,11 +86,11 @@ p6df::modules::node::langs() {
 ######################################################################
 #<
 #
-# Function: p6df::modules::node::aliases::lerna()
+# Function: p6df::modules::js::aliases::lerna()
 #
 #>
 ######################################################################
-p6df::modules::node::aliases::lerna() {
+p6df::modules::js::aliases::lerna() {
 
   # runs an npm script via lerna for a the current module
   alias lr='lerna run --stream --scope $(node -p "require(\"./package.json\").name")'
@@ -105,11 +106,11 @@ p6df::modules::node::aliases::lerna() {
 ######################################################################
 #<
 #
-# Function: p6df::modules::node::aliases::yarn()
+# Function: p6df::modules::js::aliases::yarn()
 #
 #>
 ######################################################################
-p6df::modules::node::aliases::yarn() {
+p6df::modules::js::aliases::yarn() {
 
   alias yd='yarn deploy'
   alias yD='yarn destroy'
@@ -118,30 +119,31 @@ p6df::modules::node::aliases::yarn() {
 ######################################################################
 #<
 #
-# Function: p6df::modules::node::init()
+# Function: p6df::modules::js::init()
 #
 #  Environment:	 P6_DFZ_SRC_DIR
 #>
 ######################################################################
-p6df::modules::node::init() {
+p6df::modules::js::init() {
 
-  p6df::modules::node::aliases::lerna
-  p6df::modules::node::aliases::yarn
-  p6df::modules::node::nodenv::init "$P6_DFZ_SRC_DIR"
+  p6df::modules::js::aliases::lerna
+  p6df::modules::js::aliases::yarn
+  p6df::modules::js::nodenv::init "$P6_DFZ_SRC_DIR"
 }
 
 ######################################################################
 #<
 #
-# Function: p6df::modules::node::nodenv::init(dir)
+# Function: p6df::modules::js::nodenv::init(dir)
 #
 #  Args:
 #	dir -
 #
+#  Depends:	 p6_echo
 #  Environment:	 DISABLE_ENVS HAS_NODENV NODENV_ROOT
 #>
 ######################################################################
-p6df::modules::node::nodenv::init() {
+p6df::modules::js::nodenv::init() {
   local dir="$1"
 
   [ -n "$DISABLE_ENVS" ] && return
@@ -160,13 +162,13 @@ p6df::modules::node::nodenv::init() {
 ######################################################################
 #<
 #
-# Function: p6df::modules::node::nodenv::prompt::line()
+# Function: p6df::modules::js::nodenv::prompt::line()
 #
 #  Depends:	 p6_echo
 #  Environment:	 NODENV_ROOT
 #>
 ######################################################################
-p6df::modules::node::nodenv::prompt::line() {
+p6df::modules::js::nodenv::prompt::line() {
 
   p6_echo "nodenv:\t  nodenv_root=$NODENV_ROOT"
 }
@@ -174,11 +176,12 @@ p6df::modules::node::nodenv::prompt::line() {
 ######################################################################
 #<
 #
-# Function: p6df::modules::node::prompt::line()
+# Function: p6df::modules::js::prompt::line()
 #
+#  Depends:	 p6_echo p6_node
 #>
 ######################################################################
-p6df::modules::node::prompt::line() {
+p6df::modules::js::prompt::line() {
 
   p6_node_prompt_info
 }
@@ -189,7 +192,7 @@ declare -g _p6_node_cache_prompt_version
 #
 # Function: p6_node_prompt_info()
 #
-#  Depends:	 p6_echo p6_string
+#  Depends:	 p6_echo p6_node p6_string
 #>
 ######################################################################
 p6_node_prompt_info() {
@@ -205,6 +208,7 @@ p6_node_prompt_info() {
 #
 # Function: p6_node_prompt_reset()
 #
+#  Depends:	 p6_file p6_node
 #>
 ######################################################################
 p6_node_prompt_reset() {
@@ -215,16 +219,16 @@ p6_node_prompt_reset() {
 ######################################################################
 #<
 #
-# Function: true  = p6_node_yarn_is()
+# Function: true  = p6_js_yarn_is()
 #
 #  Returns:
 #	true - 
 #	false - 
 #
-#  Depends:	 p6_file
+#  Depends:	 p6_file p6_node
 #>
 ######################################################################
-p6_node_yarn_is() {
+p6_js_yarn_is() {
 
   if p6_file_exists "yarn.lock"; then
     p6_return_true
@@ -236,16 +240,16 @@ p6_node_yarn_is() {
 ######################################################################
 #<
 #
-# Function: true  = p6_node_npm_is()
+# Function: true  = p6_js_npm_is()
 #
 #  Returns:
 #	true - 
 #	false - 
 #
-#  Depends:	 p6_file
+#  Depends:	 p6_file p6_node
 #>
 ######################################################################
-p6_node_npm_is() {
+p6_js_npm_is() {
 
   if p6_file_exists "pack-lock.json"; then
     p6_return_true
@@ -257,11 +261,12 @@ p6_node_npm_is() {
 ######################################################################
 #<
 #
-# Function: p6_node_yarn_upgrade()
+# Function: p6_js_yarn_upgrade()
 #
+#  Depends:	 p6_git p6_node
 #>
 ######################################################################
-p6_node_yarn_upgrade() {
+p6_js_yarn_upgrade() {
 
   yarn upgrade
 }
@@ -269,12 +274,12 @@ p6_node_yarn_upgrade() {
 ######################################################################
 #<
 #
-# Function: p6_node_yarn_submit()
+# Function: p6_js_yarn_submit()
 #
 #  Depends:	 p6_git p6_github
 #>
 ######################################################################
-p6_node_yarn_submit() {
+p6_js_yarn_submit() {
 
   p6_git_p6_add_all
   p6_github_gh_pr_submit "chore(deps): yarn upgrade"
