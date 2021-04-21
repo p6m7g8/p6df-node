@@ -20,6 +20,7 @@ p6df::modules::js::deps() {
 #
 # Function: p6df::modules::js::vscodes()
 #
+#  Depends:	 p6_git
 #>
 ######################################################################
 p6df::modules::js::vscodes() {
@@ -27,6 +28,24 @@ p6df::modules::js::vscodes() {
   # webasm/ts/js/deno/node/html/css
   code --install-extension dbaeumer.vscode-eslint
   code --install-extension GregorBiswanger.json2ts
+
+  code --install-extension dkundel.vscode-npm-source
+  code --install-extension meganrogge.template-string-converter
+  code --install-extension BriteSnow.vscode-toggle-quotes
+  code --install-extension steoates.autoimport
+  code --install-extension wix.glean
+  code --install-extension wix.vscode-import-cost
+  code --install-extension dsznajder.es7-react-js-snippets
+
+  code --install-extension bradgashler.htmltagwrap
+  code --install-extension formulahendry.auto-close-tag
+  code --install-extension formulahendry.auto-rename-tag
+
+  code --install-extension ecmel.vscode-html-css
+  code --install-extension ourhaouta.tailwindshades
+  code --install-extension bradlc.vscode-tailwindcss
+  code --install-extension PeterMekhaeil.vscode-tailwindcss-explorer
+  code --install-extension sudoaugustin.tailwindcss-transpiler
 }
 
 ######################################################################
@@ -121,6 +140,7 @@ p6df::modules::js::aliases::yarn() {
 #
 # Function: p6df::modules::js::init()
 #
+#  Depends:	 p6_echo
 #  Environment:	 P6_DFZ_SRC_DIR
 #>
 ######################################################################
@@ -192,7 +212,7 @@ declare -g _p6_node_cache_prompt_version
 #
 # Function: p6_node_prompt_info()
 #
-#  Depends:	 p6_echo p6_node p6_string
+#  Depends:	 p6_echo p6_file p6_node p6_string
 #>
 ######################################################################
 p6_node_prompt_info() {
@@ -208,7 +228,7 @@ p6_node_prompt_info() {
 #
 # Function: p6_node_prompt_reset()
 #
-#  Depends:	 p6_file p6_node
+#  Depends:	 p6_file
 #>
 ######################################################################
 p6_node_prompt_reset() {
@@ -225,7 +245,7 @@ p6_node_prompt_reset() {
 #	true - 
 #	false - 
 #
-#  Depends:	 p6_file p6_node
+#  Depends:	 p6_file
 #>
 ######################################################################
 p6_js_yarn_is() {
@@ -246,7 +266,7 @@ p6_js_yarn_is() {
 #	true - 
 #	false - 
 #
-#  Depends:	 p6_file p6_node
+#  Depends:	 p6_file p6_git
 #>
 ######################################################################
 p6_js_npm_is() {
@@ -263,7 +283,7 @@ p6_js_npm_is() {
 #
 # Function: p6_js_yarn_upgrade()
 #
-#  Depends:	 p6_git p6_node
+#  Depends:	 p6_git
 #>
 ######################################################################
 p6_js_yarn_upgrade() {
