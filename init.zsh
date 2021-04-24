@@ -85,7 +85,7 @@ p6df::modules::js::langs() {
   )
 
   local ver_major
-  for ver_major in 10 11 12 13 14 15; do
+  for ver_major in 12 14 16 17; do
     # nuke the old one
     local previous=$(nodenv install -l | grep ^$ver_major | tail -2 | head -1)
     nodenv uninstall -f $previous
