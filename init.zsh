@@ -3,6 +3,7 @@
 #
 # Function: p6df::modules::js::deps()
 #
+#  Depends:	 p6_git
 #>
 ######################################################################
 p6df::modules::js::deps() {
@@ -46,6 +47,8 @@ p6df::modules::js::vscodes() {
   code --install-extension bradlc.vscode-tailwindcss
   code --install-extension PeterMekhaeil.vscode-tailwindcss-explorer
   code --install-extension sudoaugustin.tailwindcss-transpiler
+
+  code --install-extension denoland.vscode-deno
 }
 
 ######################################################################
@@ -53,7 +56,6 @@ p6df::modules::js::vscodes() {
 #
 # Function: p6df::modules::js::home::symlink()
 #
-#  Depends:	 p6_git
 #  Environment:	 P6_DFZ_SRC_DIR
 #>
 ######################################################################
@@ -61,6 +63,22 @@ p6df::modules::js::home::symlink() {
 
   mkdir -p $P6_DFZ_SRC_DIR/nodenv/nodenv/plugins
   ln -fs $P6_DFZ_SRC_DIR/nodenv/node-build $P6_DFZ_SRC_DIR/nodenv/nodenv/plugins/node-build
+}
+
+######################################################################
+#<
+#
+# Function: p6df::modules::js::external::brews()
+#
+#  Depends:	 p6_git
+#  Environment:	 DENO_DIR
+#>
+######################################################################
+p6df::modules::js::external::brews() {
+
+  # DENO_DIR defaults to $HOME/.cache/deno
+  # deno completions zsh
+  brew install deno
 }
 
 ######################################################################
@@ -138,6 +156,27 @@ p6df::modules::js::aliases::yarn() {
 ######################################################################
 #<
 #
+# Function: p6df::modules::js::aliases::deno()
+#
+#  Depends:	 p6_echo
+#>
+######################################################################
+p6df::modules::js::aliases::deno() {
+
+  alias db='deno bundle'
+  alias dc='deno compile'
+  alias dca='deno cache'
+  alias dfmt='deno fmt'
+  alias dh='deno help'
+  alias dli='deno lint'
+  alias drn='deno run'
+  alias drw='deno run --watch'
+  alias dts='deno test'
+  alias dup='deno upgrade'
+}
+######################################################################
+#<
+#
 # Function: p6df::modules::js::init()
 #
 #  Depends:	 p6_echo
@@ -148,6 +187,7 @@ p6df::modules::js::init() {
 
   p6df::modules::js::aliases::lerna
   p6df::modules::js::aliases::yarn
+  p6df::modules::js::aliases::deno
   p6df::modules::js::nodenv::init "$P6_DFZ_SRC_DIR"
 }
 
