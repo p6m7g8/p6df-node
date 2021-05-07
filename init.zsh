@@ -311,7 +311,7 @@ p6_js_yarn_is() {
 ######################################################################
 p6_js_npm_is() {
 
-  if p6_file_exists "pack-lock.json"; then
+  if p6_file_exists "package-lock.json"; then
     p6_return_true
   else
     p6_return_false
